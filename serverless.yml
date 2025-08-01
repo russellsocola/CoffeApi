@@ -16,3 +16,38 @@ functions:
       - httpApi:
           path: /
           method: get
+  
+  CreateCoffee:
+    handler: services/createCoffe.handler
+    events:
+      - httpApi:
+          path: /createCoffe
+          method: post
+
+  ListCoffees:
+    handler: services/getCoffees.handler
+    events:
+      - httpApi:
+          path: /ListCoffees
+          method: get
+
+  GetCoffeesById:
+    handler: services/getCoffees.handler
+    events:
+      - httpApi:
+          path: /GetCoffee/{id}
+          method: get
+
+  EditCoffees:
+    handler: services/.handler
+    events:
+      - httpApi:
+          path: /PutCoffee/{id}
+          method: put
+
+  DeleteCoffees:
+    handler: service/delete.handler
+    events:
+      - httpApi:
+          path: /DeleteCoffee/{id}
+          method: delete
