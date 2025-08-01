@@ -8,6 +8,14 @@ service: CoffeApi
 provider:
   name: aws
   runtime: nodejs20.x
+  environment:
+    COFFEE_TABLE: E_INVOICE
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+      Resource:
+        - arn:aws:dynamodb:us-east-1:${aws:accountId}:table/E_INVOICE
 
 functions:
   hello:
@@ -18,10 +26,10 @@ functions:
           method: get
   
   CreateCoffee:
-    handler: services/createCoffe.handler
+    handler: services/createCoffee.handler
     events:
       - httpApi:
-          path: /createCoffe
+          path: /createCoffee
           method: post
 
   ListCoffees:
@@ -51,3 +59,17 @@ functions:
       - httpApi:
           path: /DeleteCoffee/{id}
           method: delete
+
+resources:
+  Resources:
+    CoffeeTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: E_INVOICE
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
