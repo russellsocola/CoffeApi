@@ -8,5 +8,5 @@ jobs:
   deploy-rsocola:
     runs-on: ubuntu-latest
     steps:
-      -name: Test
-      run: echo "Hola auto deploy"
+      - name: Test
+        run: echo "Hola auto deploy"
