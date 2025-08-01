@@ -42,10 +42,14 @@ Este proyecto implementa un backend serverless para gestionar cafés (crear, lis
 
 git clone https://github.com/russellsocola/CoffeApi.git
 
+2. Entrar al proyecto
+
 cd CoffeApi
 
+3. Instalar las dependencias necesarias
 npm install
 
+4. Desplegar el proyecto
 serverless deploy
 
 ```
