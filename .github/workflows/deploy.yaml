@@ -18,7 +18,7 @@ jobs:
       - name: Configure AWS credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::279398624118:role/GitHubRole
+          role-to-assume: ${{ secret.AWS_ROLE_TO_ASSUME }}
           aws-region: us-east-1
       
       - name: Setup Node.js
@@ -34,5 +34,5 @@ jobs:
 
       - name: Deploy with Serverless
         env:
-          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY}}
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
         run: serverless deploy
