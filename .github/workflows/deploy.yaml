@@ -33,4 +33,6 @@ jobs:
         run: npm install -g serverless@latest
 
       - name: Deploy with Serverless
+        env:
+          SERVERLESS_ACCESS_KEY: ${{ screts.SERVERLESS_ACCESS_KEY}}
         run: serverless deploy
