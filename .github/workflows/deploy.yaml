@@ -1,5 +1,9 @@
 name: "Deploy Workflow CoffeApi" 
 
+permissions:
+  id-token: write
+  contents: read
+
 on: 
   push:
     branches: [dev]
@@ -8,5 +12,25 @@ jobs:
   deploy-rsocola:
     runs-on: ubuntu-latest
     steps:
-      - name: Test
-        run: echo "Hola auto deploy"
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::279398624118:role/GitHubRole
+          aws-region: us-east-1
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Serverless
+        run: npm install -g serverless@latest
+
+      - name: Deploy with Serverless
+        run: serverless deploy
