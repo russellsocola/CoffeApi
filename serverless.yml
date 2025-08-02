@@ -42,7 +42,7 @@ functions:
           method: get
 
   GetCoffeesById:
-    handler: services/getCoffeesById.handler
+    handler: services/getCoffeeById.handler
     events:
       - httpApi:
           path: /GetCoffee/{id}
