@@ -1,33 +1,32 @@
-const { DynamoDBClient, QueryCommad } = require("@aws-sdk/client-dynamodb")
+const { DynamoDBClient, GetItemCommand } = require("@aws-sdk/client-dynamodb")
 
 const client = new DynamoDBClient({});
 exports.handler = async(event) => {
     try{
-        const { coffeeId } = event.pathParameters;
+        const coffeeId = event?.pathParameters?.id;
         
         console.log("Input: ",coffeeId)
         const params = {
             TableName: "E_INVOICE",
-            KeyConditionExpression: "coffeeId = :id",
-            ExpressionAttributeValues: {
-                ":id" : { S: coffeeId}
+            Key: {
+                id: {S: coffeeId}
             }
         };
         try{
-            const commad = new QueryCommad(params);
+            const commad = new GetItemCommand(params);
             const data = await client.send(commad);
 
             console.log("response de data: ", data);
-            if (data != null){    
+            if (!data.Item){    
                 return{
-                    statusCode: 200,
-                    body: JSON.stringify(data.Items)
+                    statusCode: 404,
+                    body: JSON.stringify({error: "Invoice no found"})
                 };
             };
 
             return {
-                statusCode: 500,
-                body: JSON.stringify({ error: "Failed to query DynamoDB" })
+                statusCode: 200,
+                body: JSON.stringify(data.Item)
             };
         }catch(error){
             
