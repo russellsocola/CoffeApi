@@ -42,21 +42,21 @@ functions:
           method: get
 
   GetCoffeesById:
-    handler: services/GetCoffeesById.handler
+    handler: services/getCoffeesById.handler
     events:
       - httpApi:
           path: /GetCoffee/{id}
           method: get
 
   EditCoffees:
-    handler: services/.handler
+    handler: services/updateCoffee.handler
     events:
       - httpApi:
           path: /PutCoffee/{id}
           method: put
 
   DeleteCoffees:
-    handler: service/delete.handler
+    handler: service/deleteCoffee.handler
     events:
       - httpApi:
           path: /DeleteCoffee/{id}
