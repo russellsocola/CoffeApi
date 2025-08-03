@@ -2,9 +2,9 @@ const { DynamoDBClient, GetItemCommand, UpdateItemCommand } = require("@aws-sdk/
 
 const client = new DynamoDBClient({});
 
-exports.handler = async(event) => {
+exports.handler = async (event) => {
     try{
-        const id = event?.PathParameters?.id;
+        const id = event?.pathParameters?.id;
         const body = JSON.parse(event.body);
 
         console.log("Input id: ", id);
