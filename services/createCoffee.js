@@ -1,9 +1,5 @@
-const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
-const { PutCommand, DynamoDBDocumentClient } = require("@aws-sdk/lib-dynamodb");
+const { ddbDocClient,PutCommand } = require("..ddbclient"); 
 const { v4: uuidv4 } = require("uuid");
-
-const client = new DynamoDBClient({});
-const ddbDocClient = DynamoDBDocumentClient.from(client);
 
 exports.handler = async(event) => {
     try{
