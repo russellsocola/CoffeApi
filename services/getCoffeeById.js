@@ -11,7 +11,7 @@ exports.handler = async (event) => {
     if (!coffeeId) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: "Missing ID in path" })
+        body: JSON.stringify({ error: "Ingresar un ID en el path" })
       };
     }
 
@@ -25,7 +25,7 @@ exports.handler = async (event) => {
     const command = new GetItemCommand(params);
     const data = await client.send(command);
 
-    console.log("DynamoDB response: ", data);
+    console.log("Se obtuvo de DynamoDB : ", data);
 
     if (!data.Item) {
       return {
