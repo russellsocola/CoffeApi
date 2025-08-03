@@ -14,7 +14,7 @@ exports.handler = async(event) => {
                 body: JSON.stringify({ message: "Ingresar un ID valido" })
             };
         };
-
+        // Veriico si existe el Id 
         const getCommand = new GetItemCommand({
                     TableName: "E_INVOICE",
                     Key: { id: { S: id } }
