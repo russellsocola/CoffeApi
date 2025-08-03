@@ -16,7 +16,7 @@ exports.handler = async(event) => {
         };
 
         const commat = new ScanCommand(params);
-        const data = new client.send(commat);
+        const data = await client.send(commat);
 
         console.log("Scan data:", JSON.stringify(data));
 
