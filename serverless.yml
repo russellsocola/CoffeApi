@@ -20,7 +20,12 @@ provider:
         - dynamodb:DeleteItem
       Resource:
         - arn:aws:dynamodb:us-east-1:${aws:accountId}:table/E_INVOICE
+  memorySize: 128
+  timeout: 6
 
+plugins:
+  - serverless-offline
+  
 functions:
   hello:
     handler: handler.hello
