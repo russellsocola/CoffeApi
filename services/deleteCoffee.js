@@ -32,7 +32,7 @@ exports.handler = async(event) => {
             Key: { id: { S: id } }
         })
 
-        await client.send(updateCommand);
+        await client.send(delette);
 
         return{
             statusCode: 200,
