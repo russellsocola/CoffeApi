@@ -17,6 +17,7 @@ provider:
         - dynamodb:Scan
         - dynamodb:GetItem
         - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
       Resource:
         - arn:aws:dynamodb:us-east-1:${aws:accountId}:table/E_INVOICE
 
@@ -57,7 +58,7 @@ functions:
           method: put
 
   DeleteCoffees:
-    handler: service/deleteCoffee.handler
+    handler: services/deleteCoffee.handler
     events:
       - httpApi:
           path: /DeleteCoffee/{id}

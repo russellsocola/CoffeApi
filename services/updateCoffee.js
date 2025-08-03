@@ -39,7 +39,7 @@ exports.handler = async (event) => {
             ExpressionAttributeValues: {
                 ":name": {S: body.name},
                 ":description": {S: body.description},
-                ":price": {S: body.price},
+                ":price": {S: body.price.toString()},
             },
             ReturnValues: "ALL_NEW"
         })

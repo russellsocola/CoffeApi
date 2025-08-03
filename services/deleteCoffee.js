@@ -1,3 +1,49 @@
+const { DynamoDBClient, GetItemCommand, DeleteItemCommand } = require("@aws-sdk/client-dynamodb");
+
+const client = new DynamoDBClient({});
+
 exports.handler = async(event) => {
-    
+    try{
+        const id = event?.pathParameters?.id;
+
+        console.log("Input id: ", id);
+
+        if(!id){
+            return{
+                statusCode: 400,
+                body: JSON.stringify({ message: "Ingresar un ID valido" })
+            };
+        };
+
+        const getCommand = new GetItemCommand({
+                    TableName: "E_INVOICE",
+                    Key: { id: { S: id } }
+                });
+        
+                const getResult = await client.send(getCommand);
+                if(!getResult.Item){
+                    return{
+                        statusCode: 404,
+                        body: JSON.stringify({message: "Id no encontrado"}),
+                    }
+                }
+        const delette = new DeleteItemCommand({
+            TableName: "E_INVOICE",
+            Key: { id: { S: id } }
+        })
+
+        await client.send(updateCommand);
+
+        return{
+            statusCode: 200,
+            body: JSON.stringify({ message: "Delette Success"})
+        };
+
+    }catch(error) {
+        console.log("Error: ", error);
+        return{
+            statusCode: 500,
+            body: JSON.stringify({error: "Invoice not found"})
+        };
+    }
 }
