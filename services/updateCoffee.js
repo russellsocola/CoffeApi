@@ -32,7 +32,7 @@ exports.handler = async (event) => {
         const updateCommand = new UpdateItemCommand({
             TableName: "E_INVOICE",
             Key: { id: { S: id } },
-            UpdateExpression: "SET :name = name :description = description, :price = price",
+            UpdateExpression: "SET name = :name, description = :description, price = :price",
             ExpressionAttributeValues: {
                 ":name": {S: body.name},
                 ":description": {S: body.description},
