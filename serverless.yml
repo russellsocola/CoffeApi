@@ -10,6 +10,7 @@ provider:
   runtime: nodejs20.x
   environment:
     COFFEE_TABLE: E_INVOICE
+  profile: dev
   iamRoleStatements:
     - Effect: Allow
       Action:
