@@ -21,8 +21,8 @@ provider:
         - dynamodb:DeleteItem
       Resource:
         - arn:aws:dynamodb:us-east-1:${aws:accountId}:table/E_INVOICE
-  memorySize: 128
-  timeout: 6
+  memorySize: 256
+  timeout: 4
   httpApi:
     cors:
       allowedOrigins:
@@ -32,6 +32,7 @@ provider:
         - POST
         - PUT
         - DELETE
+        - OPTIONS
       allowedHeaders:
         - Content-Type
         - Authorization
