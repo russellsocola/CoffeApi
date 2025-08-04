@@ -1,6 +1,4 @@
-const { DynamoDBClient, GetItemCommand, DeleteItemCommand } = require("@aws-sdk/client-dynamodb");
-
-const client = new DynamoDBClient({});
+const { ddbDocClient, GetItemCommand, DeleteItemCommand } = require("../ddbclient");
 
 exports.handler = async(event) => {
     try{
@@ -20,7 +18,7 @@ exports.handler = async(event) => {
                     Key: { id: { S: id } }
                 });
         
-                const getResult = await client.send(getCommand);
+                const getResult = await ddbDocClient.send(getCommand);
                 if(!getResult.Item){
                     return{
                         statusCode: 404,

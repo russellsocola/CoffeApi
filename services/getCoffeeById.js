@@ -1,6 +1,4 @@
-const { DynamoDBClient, GetItemCommand } = require("@aws-sdk/client-dynamodb");
-
-const client = new DynamoDBClient({});
+const { ddbDocClient,GetItemCommand } = require("../ddbclient");
 
 exports.handler = async (event) => {
   try {
@@ -23,7 +21,7 @@ exports.handler = async (event) => {
     };
 
     const command = new GetItemCommand(params);
-    const data = await client.send(command);
+    const data = await ddbDocClient.send(command);
 
     console.log("Se obtuvo de DynamoDB : ", data);
 

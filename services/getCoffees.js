@@ -1,6 +1,4 @@
-const { DynamoDBClient, ScanCommand } = require ("@aws-sdk/client-dynamodb");
-
-const client = new DynamoDBClient({});
+const { ddbDocClient,ScanCommand } = require("../ddbclient");
 
 exports.handler = async(event) => {
     try {
@@ -16,7 +14,7 @@ exports.handler = async(event) => {
         };
 
         const commat = new ScanCommand(params);
-        const data = await client.send(commat);
+        const data = await ddbDocClient.send(commat);
 
         console.log("Scan data:", JSON.stringify(data));
 
