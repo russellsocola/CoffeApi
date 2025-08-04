@@ -1,4 +1,4 @@
-const { ddbDocClient,PutCommand } = require("..ddbclient"); 
+const { ddbDocClient,PutCommand } = require("../ddbclient"); 
 const { v4: uuidv4 } = require("uuid");
 
 exports.handler = async(event) => {
