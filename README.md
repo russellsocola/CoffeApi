@@ -1,23 +1,28 @@
-# Coffee API - Serverless Framework
+
+# Project Title
+
+A brief description of what this project does and who it's for
+
+# ☕ Coffee API - Serverless Framework
 
 API REST sin servidor para manejar tipos de café usando AWS Lambda, DynamoDB y API Gateway.
 
 ---
 
-## Descripción
+## 📌 Descripción
 
-Este proyecto implementa un backend serverless para gestionar cafés (crear, listar, etc.) usando:
+Este proyecto implementa un backend serverless para gestionar cafés (crear, listar, editar y eliminar) usando:
 
-- AWS Lambda (Node.js 20.x)
-- DynamoDB para almacenamiento
-- API Gateway (HTTP API)
-- Serverless Framework para despliegues automáticos
+- **AWS Lambda** (Node.js 20.x)
+- **DynamoDB** para almacenamiento
+- **API Gateway** (HTTP API)
+- **Serverless Framework** para despliegues automáticos
 
 ---
 
-## Estructura del proyecto
+## 📁 Estructura del proyecto
 
-
+```plaintext
 .
 ├── .github/                # Workflows de GitHub Actions (CI/CD)
 ├── .serverless/            # Archivos generados por Serverless Framework
@@ -42,8 +47,6 @@ Este proyecto implementa un backend serverless para gestionar cafés (crear, lis
 ├── serverless.yml          # Configuración de Serverless Framework
 └── README.md               # Este archivo
 
-
----
 
 ## Requisitos previos
 
