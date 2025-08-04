@@ -17,12 +17,31 @@ Este proyecto implementa un backend serverless para gestionar cafés (crear, lis
 
 ## Estructura del proyecto
 
-├── services/ # Funciones Lambda (createCoffee, createAmericano, etc.)
-├── handler.js # Handler general o de funciones simples
-├── serverless.yml # Configuración de Serverless Framework
-├── package.json # Dependencias y scripts de Node.js
-├── package-lock.json # Lockfile para versiones consistentes
-└── README.md # Este archivo
+
+.
+├── .github/                # Workflows de GitHub Actions (CI/CD)
+├── .serverless/            # Archivos generados por Serverless Framework
+├── node_modules/           # Dependencias de Node.js
+├── services/               # Lambdas de la API (create, update, delete, get)
+│   ├── createCoffee.js
+│   ├── deleteCoffee.js
+│   ├── getCoffeeById.js
+│   ├── getCoffees.js
+│   └── updateCoffee.js
+├── test/                   # Tests unitarios de las Lambdas
+│   ├── createCoffee.test.js
+│   ├── deleteCoffee.test.js
+│   ├── getCoffeeById.test.js
+│   ├── getCoffees.test.js
+│   └── updateCoffee.test.js
+├── autodisploy.sh          # Script opcional para automatización del deploy
+├── ddbclient.js            # Configuración del cliente DynamoDB
+├── handler.js              # Handler base
+├── package.json            # Configuración y scripts del proyecto Node.js
+├── package-lock.json       # Lockfile para versiones consistentes
+├── serverless.yml          # Configuración de Serverless Framework
+└── README.md               # Este archivo
+
 
 ---
 
