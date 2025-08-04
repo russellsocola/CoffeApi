@@ -30,7 +30,7 @@ exports.handler = async(event) => {
             Key: { id: { S: id } }
         })
 
-        await client.send(delette);
+        await ddbDocClient.send(delette);
 
         return{
             statusCode: 200,
