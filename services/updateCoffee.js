@@ -42,7 +42,7 @@ exports.handler = async (event) => {
             ReturnValues: "ALL_NEW"
         })
 
-        const updateResult = await client.send(updateCommand);
+        const updateResult = await ddbDocClient.send(updateCommand);
 
         return{
             statusCode: 200,
