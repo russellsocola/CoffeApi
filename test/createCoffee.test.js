@@ -13,7 +13,7 @@ describe("createCoffee Lambda", () => {
     jest.clearAllMocks();
   });
 
-  it("✅ debe retornar 201 cuando se guarda correctamente", async () => {
+  it("201 Se guardo Correctamente", async () => {
     ddbClient.ddbDocClient.send.mockResolvedValueOnce({});
 
     const event = {
@@ -31,7 +31,7 @@ describe("createCoffee Lambda", () => {
     expect(ddbClient.ddbDocClient.send).toHaveBeenCalledTimes(1);
   });
 
-  it("⚠️ debe retornar 400 si faltan campos", async () => {
+  it("400 Faltan Campos", async () => {
     const event = {
       body: JSON.stringify({
         nameCoffee: "Café solo",
@@ -46,7 +46,7 @@ describe("createCoffee Lambda", () => {
     expect(ddbClient.ddbDocClient.send).not.toHaveBeenCalled();
   });
 
-  it("🔥 debe retornar 500 si ocurre un error interno", async () => {
+  it("500 Un error interno en el Servidor", async () => {
     ddbClient.ddbDocClient.send.mockRejectedValueOnce(new Error("DynamoDB error"));
 
     const event = {

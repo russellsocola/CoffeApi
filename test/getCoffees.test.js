@@ -13,7 +13,7 @@ describe("scanInvoices Lambda", () => {
     jest.clearAllMocks();
   });
 
-  it("✅ debe retornar 200 con items y lastEvaluatedKey si hay más páginas", async () => {
+  it("200 con items y lastEvaluatedKey si hay más páginas", async () => {
     const fakeItems = [{ id: "id-1" }, { id: "id-2" }];
     const lastKey = { id: "id-2" };
 
@@ -37,7 +37,7 @@ describe("scanInvoices Lambda", () => {
     expect(ddbClient.ddbDocClient.send).toHaveBeenCalledTimes(1);
   });
 
-  it("✅ debe retornar 200 sin lastEvaluatedKey si no hay más páginas", async () => {
+  it("200 sin lastEvaluatedKey si no hay más páginas", async () => {
     const fakeItems = [{ id: "id-1" }];
 
     ddbClient.ddbDocClient.send.mockResolvedValueOnce({
@@ -56,7 +56,7 @@ describe("scanInvoices Lambda", () => {
     expect(body.lastEvaluatedKey).toBeNull();
   });
 
-  it("✅ debe funcionar correctamente si no se pasa queryStringParameters", async () => {
+  it("debe funcionar correctamente si no se pasa queryStringParameters", async () => {
     const fakeItems = [{ id: "id-1" }];
 
     ddbClient.ddbDocClient.send.mockResolvedValueOnce({
@@ -71,7 +71,7 @@ describe("scanInvoices Lambda", () => {
     expect(JSON.parse(result.body).items).toEqual(fakeItems);
   });
 
-  it("🔥 debe retornar 500 si ocurre un error", async () => {
+  it("500 si ocurre un error", async () => {
     ddbClient.ddbDocClient.send.mockRejectedValueOnce(new Error("DynamoDB error"));
 
     const event = {

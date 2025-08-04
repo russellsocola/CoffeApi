@@ -14,7 +14,7 @@ describe("updateInvoice Lambda", () => {
     jest.clearAllMocks();
   });
 
-  it("✅ debe retornar 200 cuando se actualiza correctamente", async () => {
+  it("200 cuando se actualiza correctamente", async () => {
     const mockItem = { id: { S: "1" }, name: { S: "Latte" } };
     const updatedItem = { id: { S: "1" }, name: { S: "Cappuccino" }, description: { S: "Delicious" }, price: { S: "12" } };
 
@@ -35,7 +35,7 @@ describe("updateInvoice Lambda", () => {
     expect(ddbClient.ddbDocClient.send).toHaveBeenCalledTimes(2);
   });
 
-  it("⚠️ debe retornar 400 si falta el ID o el body", async () => {
+  it("400 si falta el ID o el body", async () => {
     const event = {
       pathParameters: {}, // falta id
       body: JSON.stringify({ name: "Cappuccino" }),
@@ -47,7 +47,7 @@ describe("updateInvoice Lambda", () => {
     expect(JSON.parse(result.body).message).toBe("Ingresar un ID o body valido");
   });
 
-  it("⚠️ debe retornar 404 si el ID no existe", async () => {
+  it("404 si el ID no existe", async () => {
     ddbClient.ddbDocClient.send.mockResolvedValueOnce({}); // GetItem sin .Item
 
     const event = {
@@ -61,7 +61,7 @@ describe("updateInvoice Lambda", () => {
     expect(JSON.parse(result.body).message).toBe("Id no encontrado");
   });
 
-  it("🔥 debe retornar 500 si ocurre un error", async () => {
+  it("500 si ocurre un error", async () => {
     ddbClient.ddbDocClient.send.mockRejectedValueOnce(new Error("DynamoDB error"));
 
     const event = {

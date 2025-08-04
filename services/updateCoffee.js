@@ -2,6 +2,7 @@ const { ddbDocClient,GetItemCommand, UpdateItemCommand } = require("../ddbclient
 
 exports.handler = async (event) => {
     try{
+        //obtengo el ID
         const id = event?.pathParameters?.id;
         const body = JSON.parse(event.body);
 
@@ -14,6 +15,7 @@ exports.handler = async (event) => {
             };
         };
 
+        //Busco si existe
         const getCommand = new GetItemCommand({
             TableName: "E_INVOICE",
             Key: { id: { S: id } }
@@ -27,6 +29,7 @@ exports.handler = async (event) => {
             }
         }
 
+        //Actualizo solo datos necestarios no sustituyo todo
         const updateCommand = new UpdateItemCommand({
             TableName: "E_INVOICE",
             Key: { id: { S: id } },
@@ -41,7 +44,6 @@ exports.handler = async (event) => {
             },
             ReturnValues: "ALL_NEW"
         })
-
         const updateResult = await ddbDocClient.send(updateCommand);
 
         return{

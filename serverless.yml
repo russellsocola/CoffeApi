@@ -23,6 +23,18 @@ provider:
         - arn:aws:dynamodb:us-east-1:${aws:accountId}:table/E_INVOICE
   memorySize: 128
   timeout: 6
+  httpApi:
+    cors:
+      allowedOrigins:
+        - '*'
+      allowedMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+      allowedHeaders:
+        - Content-Type
+        - Authorization
 
 plugins:
   - serverless-offline

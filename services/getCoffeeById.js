@@ -2,10 +2,12 @@ const { ddbDocClient,GetItemCommand } = require("../ddbclient");
 
 exports.handler = async (event) => {
   try {
+    //recibo el parametro ID
     const coffeeId = event?.pathParameters?.id;
 
     console.log("Input ID: ", coffeeId);
 
+    //Valido que el Id venga en el path
     if (!coffeeId) {
       return {
         statusCode: 400,

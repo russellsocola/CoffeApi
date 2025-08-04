@@ -14,7 +14,7 @@ describe("deleteInvoice Lambda", () => {
     jest.clearAllMocks();
   });
 
-  it("✅ debe retornar 200 cuando se elimina correctamente", async () => {
+  it("200 se elimino Correctamente", async () => {
     const mockItem = { id: { S: "1" } };
 
     ddbClient.ddbDocClient.send
@@ -32,7 +32,7 @@ describe("deleteInvoice Lambda", () => {
     expect(ddbClient.ddbDocClient.send).toHaveBeenCalledTimes(2);
   });
 
-  it("⚠️ debe retornar 400 si no se envía el ID", async () => {
+  it("400 Falta el ID", async () => {
     const event = {
       pathParameters: {}, // sin ID
     };
@@ -44,7 +44,7 @@ describe("deleteInvoice Lambda", () => {
     expect(ddbClient.ddbDocClient.send).not.toHaveBeenCalled();
   });
 
-  it("⚠️ debe retornar 404 si el ID no existe", async () => {
+  it("404 si el ID no existe", async () => {
     ddbClient.ddbDocClient.send.mockResolvedValueOnce({}); // GetItem sin `.Item`
 
     const event = {
@@ -58,7 +58,7 @@ describe("deleteInvoice Lambda", () => {
     expect(ddbClient.ddbDocClient.send).toHaveBeenCalledTimes(1);
   });
 
-  it("🔥 debe retornar 500 si ocurre un error inesperado", async () => {
+  it("500 un error inesperado", async () => {
     ddbClient.ddbDocClient.send.mockRejectedValueOnce(new Error("DynamoDB fail"));
 
     const event = {

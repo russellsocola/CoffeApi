@@ -6,3 +6,4 @@ exports.hello = async (event) => {
     }),
   };
 };
+/**Lambda de ejemplo podria devulve un string simple con un status 200 */

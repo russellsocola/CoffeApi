@@ -2,6 +2,7 @@ const { ddbDocClient,ScanCommand } = require("../ddbclient");
 
 exports.handler = async(event) => {
     try {
+        //si viene el lastkey lo uso para identificar a que pagina ir
         const lastKey = event?.queryStringParameters?.lastKey
         ? JSON.parse(decodeURIComponent(event.queryStringParameters.lastKey))
         : undefined;

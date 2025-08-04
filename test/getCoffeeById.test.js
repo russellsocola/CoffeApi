@@ -15,7 +15,7 @@ describe("getCoffeeById Lambda", () => {
     jest.clearAllMocks();
   });
 
-  it("✅ debe retornar 200 y el item si existe", async () => {
+  it("200 y el item si existe", async () => {
     const fakeItem = {
       id: { S: "id-123" },
       name: { S: "Latte" },
@@ -35,7 +35,7 @@ describe("getCoffeeById Lambda", () => {
     expect(ddbClient.ddbDocClient.send).toHaveBeenCalledTimes(1);
   });
 
-  it("⚠️ debe retornar 404 si el item no existe", async () => {
+  it("404 si el item no existe", async () => {
     ddbClient.ddbDocClient.send.mockResolvedValueOnce({}); // Sin Item
 
     const event = {
@@ -48,7 +48,7 @@ describe("getCoffeeById Lambda", () => {
     expect(JSON.parse(result.body)).toEqual({ error: "Invoice not found" });
   });
 
-  it("⚠️ debe retornar 400 si no se pasa ID en el path", async () => {
+  it("400 si no se pasa ID en el path", async () => {
     const event = { pathParameters: {} };
 
     const result = await handler(event);
@@ -58,7 +58,7 @@ describe("getCoffeeById Lambda", () => {
     expect(ddbClient.ddbDocClient.send).not.toHaveBeenCalled();
   });
 
-  it("🔥 debe retornar 500 si ocurre un error interno", async () => {
+  it("500 si ocurre un error interno", async () => {
     const originalConsole = console.error;
     console.error = jest.fn(); // silencia el error
 
